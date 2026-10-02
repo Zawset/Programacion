@@ -10,11 +10,12 @@ public class Practica9 {
         Scanner sc = new Scanner(System.in);
 
         int numero;
-        int i = 1;
+
 
         System.out.print("Escribe el número para saber si es primo: ");
         numero = sc.nextInt();
 
+        int i = 1;
         while (i!=-1 && i<numero/2){
             i++;
 

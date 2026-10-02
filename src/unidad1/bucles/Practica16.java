@@ -10,15 +10,22 @@ public class Practica16 {
     */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int numero;
-        int i = 0;
 
         System.out.print("Escribe un número: ");
-        numero= sc.nextInt();
-        while (i < 5){
+        int x = sc.nextInt();
+        for (int numero= x; numero <= x+5; numero++) {
+            int i = 2;
+            while (i!=-1 && i<numero/2){
+                i++;
 
-
-            i++;
+                if (numero % i == 0){
+                    i=-1;
+                }
+            }
+            if (i ==-1){
+                System.out.println(numero + " no es un número primo");
+            }else System.out.println(numero + " es un número primo");
         }
-    }
+        }
+
 }
