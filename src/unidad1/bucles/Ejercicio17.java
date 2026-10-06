@@ -11,5 +11,7 @@ public class Ejercicio17 {
         Scanner sc = new Scanner(System.in);
         int numero;
 
+        System.out.print("Escriba el número:");
+    //NO HACER
     }
 }
