@@ -10,26 +10,40 @@ public class Programa1 {
      */
 
     static void main() {
-        Random random= new Random();
+        Random random = new Random();
+        final int TMIN = 15, TMAX = 30, HMIN = 30, HMAX = 70, AUSENCIA = 0, PRESENCIA = 1;
+        final int LECTURAS_ANOMALAS = 3, SENSIBILIDAD = 1000;
 
-        int MAX_TEMP = 50;
-        int MAX_HUM = 70;
-        int temperatura, humedad, errores;
-        int tError = 0, hError = 0, pError = 0;
-        boolean presencia = false;
+        int sensorT, sensorH, sensorP, lecturas;
+        int contAnomaliasT, contAnomaliasH, contAnomaliasP;
+        int alarmasT, alarmasH, alarmasP;
+        int tMaxima, tMinima, hMaxima, hMinima, tSuma, hSuma;
 
-        while (tError != 3 && hError != 3 && pError !=3){
-            temperatura = random.nextInt(75);
-            humedad = random.nextInt(101);
-            presencia = random.nextBoolean();
-            if (temperatura > MAX_TEMP){
-                tError ++;
-            }
+        contAnomaliasT = contAnomaliasH = contAnomaliasP = 0;
+        tSuma = hSuma = lecturas = 0;
+        tMaxima = hMaxima = Integer.MIN_VALUE;
+        tMinima = hMinima = Integer.MAX_VALUE;
+
+        while (true) {
+
+            //Generar lecturas sensores
+            sensorT = random.nextInt(10, 41);
+            sensorH = random.nextInt(20, 91);
+            sensorP = random.nextInt(0, 2);
+
+            //Contar lectura
+            lecturas++;
+
+
+            System.out.println("Kecruras actuales:");
 
 
         }
 
 
     }
+
+
+}
 
 }
