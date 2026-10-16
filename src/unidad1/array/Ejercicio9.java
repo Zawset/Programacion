@@ -3,7 +3,8 @@ package unidad1.array;
 import java.util.Random;
 
 public class Ejercicio9 {
-    static void main() {
+    public static void main(String[] args) {
+
         /*
         Define tres arrays de 20 números enteros cada uno, con nombres numeros,
         cuadrados y cubos. Carga el array numeros con valores aleatorios entre 0 y 100.
@@ -14,6 +15,17 @@ public class Ejercicio9 {
          */
 
         Random rng = new Random();
-        // hola mundo
+        int [] numeros = new int[20];
+        int [] cuadrados = new int[20];
+        int [] cubo = new int[20];
+
+        for (int i = 0; i < numeros.length; i++) {
+            numeros[i] = rng.nextInt(0,101);
+            cuadrados[i] = numeros[i]*numeros[i];
+            cubo[i] = cuadrados[i]*numeros[i];
+
+            System.out.printf("%-15s %-15s %-15s",numeros[i],  cuadrados[i], cubo[i]);
+            System.out.println();
+        }
     }
 }

@@ -14,12 +14,13 @@ public class Ejercicio7 {
 
         Scanner sc = new Scanner(System.in);
         int n, m;
+        int[] arrayCreado;
 
         System.out.print("Dime la extensión del Array: ");
         n = sc.nextInt();
         System.out.println("Dime que número estará en las posiciones del array");
         m = sc.nextInt();
-        int[] arrayCreado = new int[n];
+        arrayCreado = new int[n];
         Arrays.fill(arrayCreado, m);
         for (int i : arrayCreado) {
             System.out.println(i);

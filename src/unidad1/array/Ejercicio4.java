@@ -2,7 +2,7 @@ package unidad1.array;
 
 import java.util.Scanner;
 
-public class Ejercicio4 {
+public class  Ejercicio4 {
     static void main() {
         /*Crea un programa que pida veinte números enteros por teclado,
         los almacene en un array y luego muestre por separado la suma de todos los
