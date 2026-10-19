@@ -12,10 +12,22 @@ public class Ejercicio12 {
          */
 
         Scanner sc = new Scanner(System.in);
+        String[] nombres = {"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
         int[] meses = new int[12];
+        int temperatura = 0;
 
         for (int i = 0; i < meses.length; i++) {
-            System.out.println("Temperatura en el mes " + (meses[i] + 1));
+            System.out.print("Temperatura en el mes " + (nombres[i])+": ");
+            meses[i] = sc.nextInt();
+            System.out.println();
+        }
+        for (int i = 0; i < meses.length; i++) {
+            System.out.print("Mes " + (nombres[i])+":");
+            for (int j = meses[i]; j > temperatura; temperatura++) {
+                System.out.print("*");
+            }
+            System.out.println();
+            temperatura = 0;
         }
 
     }

@@ -31,8 +31,10 @@ public class Ejercicio11 {
         for (int i = 0; i < numeros.length; i++) {
             if (numeros[i] == viejo) {
                 numeros[i] = nuevo;
+                System.out.print("\""+numeros[i]+"\" ");
+            } else {
+                System.out.print(numeros[i] + " ");
             }
-            System.out.print(numeros[i] + " ");
         }
     }
 }
