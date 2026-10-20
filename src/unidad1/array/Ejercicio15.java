@@ -15,6 +15,13 @@ public class Ejercicio15 {
         int[] numeros = new int[20];
         int[] pares;
         int[] impares;
-
+        int cont_p=0;
+        int cont_i=0;
+        for (int i = 0; i < numeros.length; i++) {
+            numeros[i] = rng.nextInt(101);
+            if (numeros[i] %2==0){
+                cont_p++;
+            }
+        }
     }
 }

@@ -13,12 +13,12 @@ public class Ejercicio14 {
         int[] numeros;
         numeros = new int[55];
         int cont=0;
-        for (int i = 1; i <= 10; i++) {
-            numeros[cont] = i;
-            for (int j = 0; j < numeros[i]; j++) {
-
+        for (int i = 1; i <=10 ; i++) {
+            // Determino el número que voy a poner y repetir
+            for (int j = 0; j < i; j++) { //Comprueba cuantas veces se debe repetir y si ya se cumplió la condición
+                numeros[cont] = i; //Escribo el numero en la posicion de cont
+                cont++; //Avanzo una posicion
             }
-            cont++;
         }
 
         System.out.println();
