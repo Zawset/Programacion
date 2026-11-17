@@ -7,12 +7,25 @@ public class BuscaTesoro {
     static Scanner sc = new Scanner(System.in);
     static Random rng = new Random();
     static final int FILAS = 5, COLS = 5;
-    static final char TESORO = '€';
-    static final char MINA = '*';
+    static final char TESORO = '$';
+    static final char TESORO_ENCONTRADO = '€';
+    static final char MINA = '!';
+    static final char MINA_ENCONTRADA = '*';
     static final char DISPARO = 'X';
     static final char BLANCO = ' ';
 
     public static void main(String[] args) {
+        char jugar;
+        System.out.println("Quieres jugar una partida?");
+        jugar = sc.nextLine().toUpperCase().charAt(0);
+        do {
+                iniciarPartida();
+            System.out.println("Eso fue divertido, quieres echar otra?");
+            jugar = sc.nextLine().toUpperCase().charAt(0);
+        }while (jugar == 'S');
+
+    }
+    static void iniciarPartida(){
 
         char[][] tablero = new char[FILAS][COLS];
 
@@ -20,10 +33,8 @@ public class BuscaTesoro {
         do {
             mostrarTablero(tablero);
         } while (realizarJugada(tablero));
-
-
+        mostrarTablero(tablero);
     }
-
     static void iniciarTablero(char[][] tablero, int numMinas) {
         int f, c;
 
@@ -126,9 +137,11 @@ public class BuscaTesoro {
 
         if (tablero[f][c] == TESORO){
             System.out.println("VICTORIA");
+            tablero[f][c] = TESORO_ENCONTRADO;
             return false;
         }else if (tablero[f][c] == MINA){
             System.out.println("SCONFITTA");
+            tablero[f][c] = MINA_ENCONTRADA;
             return false;
         }else {
             tablero[f][c] = DISPARO;
