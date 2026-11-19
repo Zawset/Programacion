@@ -16,11 +16,10 @@ public class BuscaTesoro {
 
     public static void main(String[] args) {
         char jugar;
-        System.out.println("Quieres jugar una partida?");
-        jugar = sc.nextLine().toUpperCase().charAt(0);
+        System.out.println("Vamos a jugar una partida");
         do {
-                iniciarPartida();
-            System.out.println("Eso fue divertido, quieres echar otra?");
+            iniciarPartida();
+            System.out.println("Eso fue divertido, quieres echar otra? (s/n)");
             jugar = sc.nextLine().toUpperCase().charAt(0);
         }while (jugar == 'S');
 
