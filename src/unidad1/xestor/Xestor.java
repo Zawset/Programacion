@@ -20,29 +20,28 @@ public class Xestor {
                 case 1:
                     if (engadirTarefa(tareas, num_Tarea)) num_Tarea++;
                     break;
-//            case 2:
-//                revisarTarefa();
-//                break;
-//            case 3:
-//                completarTarefa();
-//                break;
+                case 2:
+                    revisarTarefa(tareas, num_Tarea);
+                    break;
+                case 3:
+                    completarTarea(tareas, num_Tarea);
+                    break;
                 case 4:
                     listarTarefa(tareas, num_Tarea);
                     break;
-//            case 5:
-//                buscarTarefaDescripcion();
-//                break;
-//            case 6:
-//                buscarTarefaUsuario();
-//                break;
-//            case 7:
-//                resumoTarefa();
-//                break;
-//            case 0:
-//                salirPrograma();
-//                break;
+                case 5:
+                    buscarTarefaDescripcion(tareas, num_Tarea);
+                    break;
+                case 6:
+                    buscarTarefaUsuario(tareas, num_Tarea);
+                    break;
+                case 7:
+                  resumoTarefa(tareas, num_Tarea);
+                  break;
+                case 0:
+                  break;
             }
-        }while (opcion != 0);
+        } while (opcion != 0);
     }
 
     static int mostrarMenu() {
@@ -101,14 +100,108 @@ public class Xestor {
         tareas[numTarefa] = tarefa;
         return true;
     }
-    static void listarTarefa(String[] tareas, int numTareas){
+
+    static void revisarTarefa(String[] tareas, int numTareas) {
+        int n;
+        String responsable;
+        String[] partes;
+        listarTarefa(tareas, numTareas);
+        System.out.print("\nResponsable de la revisión: ");
+        responsable = sc.nextLine();
+        responsable = convertirCamelCase(responsable);
+        System.out.print("\nQue tarefa queres revisar (Ponga el numero correspondiente): ");
+        do {
+            n = sc.nextInt();
+            sc.nextLine();
+        } while (n > tareas.length || n <= 0);
+        partes = tareas[n - 1].split("\\|");
+
+        tareas[n - 1] = partes[0].concat(" | ")
+                .concat(partes[1])
+                .concat("| Estado: EN REVISIÓN | ")
+                .concat("Responsable: ")
+                .concat(responsable);
+
+        System.out.println("Tarefa revisada");
+
+    }
+
+    static void completarTarea(String[] tareas, int numTareas) {
+        String[] partes;
+        String responsable;
+        int n;
+
+        listarTarefa(tareas, numTareas);
+        do {
+            System.out.print("Que tarea quieres completar? ");
+            n = sc.nextInt();
+            sc.nextLine();
+        } while (n <= 0 || n > numTareas);
+        n--;
+
+        System.out.print("Responsable? ");
+        responsable = sc.nextLine();
+        partes = tareas[n].split("\\|");
+        tareas[n] = partes[0].concat("|")
+                .concat(partes[1])
+                .concat("| Estado: COMPLETADA | ")
+                .concat("Responsable: ")
+                .concat(convertirCamelCase(responsable));
+
+        System.out.println("\nTarea revisada....\n");
+    }
+    static void buscarTarefaDescripcion(String[] tareas, int numTareas) {
+        String descripcion;
+        System.out.print("\nQue usuario buscas: ");
+        descripcion = sc.nextLine();
+        descripcion = tipoOracion(descripcion);
+        for (int i = 0; i < numTareas; i++) {
+            if (tareas[i].contains(descripcion)){
+                System.out.println((i+1) + ". " +tareas[i]);
+            }
+        }
+        System.out.println();
+    }
+
+    static void buscarTarefaUsuario(String[] tareas, int numTareas) {
+        String usuario;
+        System.out.print("\nQue usuario buscas: ");
+        usuario = sc.nextLine();
+        usuario = convertirCamelCase(usuario);
+        for (int i = 0; i < numTareas; i++) {
+            if (tareas[i].contains(usuario)){
+                System.out.println((i+1) + ". " +tareas[i]);
+            }
+        }
+        System.out.println();
+    }
+
+    static void listarTarefa(String[] tareas, int numTareas) {
         System.out.println("\tLISTAR TAREFAS");
         System.out.println("-".repeat(25));
 
         for (int i = 0; i < numTareas; i++) {
-            System.out.println(tareas[i]);
+            System.out.println((i + 1) + ". " + tareas[i]);
         }
 
+    }
+    static void resumoTarefa(String[] tareas, int numTareas){
+        int pendientes = 0, revision = 0, completadas = 0;
+
+        for (int i = 0; i < numTareas; i++) {
+            if (tareas[i].contains("PENDENTE")){
+                pendientes++;
+            }else if (tareas[i].contains("EN REVISIÓN")){
+                revision++;
+            }else if (tareas[i].contains("COMPLETADA")){
+                completadas++;
+            }
+        }
+        System.out.println("Total de tareas: " + numTareas);
+        System.out.println("Pendientes: " + pendientes);
+        System.out.println("En revisión: " + revision);
+        System.out.println("Completadas: " + completadas);
+        System.out.println();
     }
 
     static String convertirCamelCase(String txt) {
