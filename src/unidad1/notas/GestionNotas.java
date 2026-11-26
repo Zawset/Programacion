@@ -73,7 +73,7 @@ public class GestionNotas {
 
         // 10. Modificar la nota de un alumno
         System.out.println("\n=== MODIFICAR NOTA ===");
-        boolean modificada = modificarNota(nombres, notas, "Carlos", 6.5);
+        boolean modificada = modificarNota(nombres, notas, "Pablo", 6.5);
 
         if (modificada) {
             System.out.println("Nota modificada correctamente");
@@ -172,11 +172,11 @@ public class GestionNotas {
     //EJERCICIO 8
     static int buscarAlumno(String[] alumnos, String objetivo){
         int i = 0;
-        while (i < alumnos.length) {
-            if (alumnos[i].equals(objetivo)){
-                return i;
-            }
+        while (i < alumnos.length && !alumnos[i].equalsIgnoreCase(objetivo)) {
             i++;
+        }
+        if (i < alumnos.length) {
+            return i;
         }
         return -1;
     }
@@ -184,25 +184,22 @@ public class GestionNotas {
     //EJERCICIO 9
     static double consultarNota(String[] alumnos, double[] notas, String objetivo){
         int i = 0;
-        while (i < alumnos.length) {
-            if (alumnos[i].equals(objetivo)){
-                return notas[i];
-            }
-            i++;
+        i = buscarAlumno(alumnos, objetivo);
+        if (i != -1){
+            return notas[i];
         }
         return -1;
     }
 
     //EJERCICIO 10
     static boolean modificarNota(String[] alumnos, double[] notas, String objetivo, double notaNueva){
-        int pos = -1;
-        for (int i = 0; i < alumnos.length; i++) {
-            if (alumnos[i].equals(objetivo)){
-                pos = i;
-            }
+        int pos = 0;
+        pos = buscarAlumno(alumnos, objetivo);
+        if (pos != -1) {
+            notas[pos] = notaNueva;
+            return true;
         }
-        notas[pos] = notaNueva;
-        return true;
+        return false;
     }
 
     //EJERCICIO 11
@@ -216,14 +213,8 @@ public class GestionNotas {
     }
 
     //EJERCICIO 12
-    static double porcentajeAprobados(double[] notas){
-        double porcentaje = 0;
-        for (double nota : notas) {
-            if (nota >= 5) {
-                porcentaje++;
-            }
-        }
-        return porcentaje/notas.length*100;
+    static double porcentajeAprobados(double[] notas) {
+            return (double) contarAprobados(notas) / notas.length * 100;
     }
 
     //EJERCICIO 13
